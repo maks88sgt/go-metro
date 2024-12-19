@@ -27,9 +27,8 @@ function TripList() {
         //@ts-ignore
         Telegram.WebApp.LocationManager.init(()=>{
             //@ts-ignore
-            Telegram.WebApp.LocationManager.getLocation((location)=>{
-                setCurrentLocation(location)
-            })
+            setCurrentLocation({latitude: Telegram.WebApp.LocationData.latitude, longitude: Telegram.WebApp.LocationData.longitude })
+           
         })
     },[])
 
