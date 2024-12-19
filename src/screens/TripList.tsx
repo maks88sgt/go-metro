@@ -22,12 +22,20 @@ function TripList() {
     };
 
     const [currentLocation, setCurrentLocation] = useState("Initial Value")
+    const [currentUser, setCurrentUser] = useState("Initial User")
 
     useEffect(()=>{
         console.log('Triggered')
         //@ts-ignore
-        setCurrentLocation({latitude: Telegram.WebApp.LocationData.latitude, longitude: Telegram.WebApp.LocationData.longitude })
+        setCurrentLocation({latitude: Telegram.WebApp?.LocationData?.latitude, longitude: Telegram.WebApp?.LocationData?.longitude })
         console.log('After')
+    },[])
+
+    useEffect(()=>{
+        console.log('Triggered22222')
+        //@ts-ignore
+        setCurrentUser({user: Telegram.WebApp.WebAppInitData.user })
+        console.log('After22222')
     },[])
 
     return (
@@ -50,7 +58,8 @@ function TripList() {
                     </CardContent>
                 </Card>
             ))}
-            Location: {JSON.stringify(location)}
+            Location: {JSON.stringify(currentLocation)}
+            User: {JSON.stringify(currentUser)}
         </div>
     );
 }
