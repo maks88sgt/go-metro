@@ -53,7 +53,7 @@ function TripList() {
                     </CardContent>
                 </Card>
             ))}
-            Location: {location}
+            Location: {JSON.stringify(location)}
         </div>
     );
 }
