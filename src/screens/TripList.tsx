@@ -24,12 +24,10 @@ function TripList() {
     const [currentLocation, setCurrentLocation] = useState("Initial Value")
 
     useEffect(()=>{
+        console.log('Triggered')
         //@ts-ignore
-        Telegram.WebApp.LocationManager.init(()=>{
-            //@ts-ignore
-            setCurrentLocation({latitude: Telegram.WebApp.LocationData.latitude, longitude: Telegram.WebApp.LocationData.longitude })
-           
-        })
+        setCurrentLocation({latitude: Telegram.WebApp.LocationData.latitude, longitude: Telegram.WebApp.LocationData.longitude })
+        console.log('After')
     },[])
 
     return (
