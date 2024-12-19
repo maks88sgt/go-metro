@@ -25,9 +25,9 @@ function TripList() {
 
     useEffect(()=>{
         //@ts-ignore
-        Telegram.WebApp.LcationManager.init(()=>{
+        Telegram.WebApp.LocationManager.init(()=>{
             //@ts-ignore
-            Telegram.WebApp.LcationManager.getLocation((location)=>{
+            Telegram.WebApp.LocationManager.getLocation((location)=>{
                 setCurrentLocation(location)
             })
         })
