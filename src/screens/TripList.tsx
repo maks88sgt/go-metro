@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Button } from "@mui/material";
+import { useEffect } from "react";
 
 // Define the structure of a trip object
 interface Trip {
@@ -19,6 +20,16 @@ function TripList() {
     const handleRedirectToBot = (tripId: number) => {
         window.location.href = `https://t.me/your_bot_name?start=trip_${tripId}`;
     };
+
+    useEffect(()=>{
+        //@ts-ignore
+        Telegram.WebApp.LcationManager.init(()=>{
+            //@ts-ignore
+            Telegram.WebApp.LcationManager.getLocation((location)=>{
+                console.log(">>>>>>>>>", location)
+            })
+        })
+    },[])
 
     return (
         <div>
