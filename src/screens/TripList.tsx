@@ -66,7 +66,7 @@ function TripList() {
     useEffect(()=>{
         console.log('Triggered22222')
         //@ts-ignore
-        setCurrentUser({user: Telegram.WebApp.WebAppInitData })
+        setCurrentUser({theme: Telegram.WebApp.ThemeParams })
         console.log('After22222')
     },[])
 
