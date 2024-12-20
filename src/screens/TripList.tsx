@@ -25,16 +25,48 @@ function TripList() {
     const [currentUser, setCurrentUser] = useState("Initial User")
 
     useEffect(()=>{
-        console.log('Triggered')
-        //@ts-ignore
-        setCurrentLocation({latitude: Telegram.WebApp?.LocationData?.latitude, longitude: Telegram.WebApp?.LocationData?.longitude })
-        console.log('After')
+        console.log(">>>>>>>>>>>>>>>>>")
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+        
+                    setCurrentLocation(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        
+                    //@ts-ignore
+                    window.Telegram.WebApp.sendData(JSON.stringify({ latitude, longitude }));
+                },
+                (error) => {
+                    console.error("Error getting location:", error);
+        
+                    //@ts-ignore
+                    window.Telegram.WebApp.showAlert("Failed to get location. Please allow access.");
+                },
+                {
+                    enableHighAccuracy: true, // Повышенная точность
+                    timeout: 10000,          // Тайм-аут в миллисекундах
+                    maximumAge: 0            // Не использовать кэшированные данные
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+            //@ts-ignore
+            window.Telegram.WebApp.showAlert("Geolocation is not supported by your device.");
+        }
     },[])
 
     useEffect(()=>{
         console.log('Triggered22222')
         //@ts-ignore
-        setCurrentUser({user: Telegram.WebApp.WebAppInitData.user })
+        setCurrentUser({user: Telegram.WebApp.WebAppInitData })
+        console.log('After22222')
+    },[])
+
+    useEffect(()=>{
+        console.log('Triggered22222')
+        //@ts-ignore
+        setCurrentUser({user: Telegram.WebApp.WebAppInitData })
         console.log('After22222')
     },[])
 
